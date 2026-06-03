@@ -1,0 +1,22 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# System utilities for Hermes-Ops MCP (procps gives us free, uptime, ps)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends procps && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir hermes-agent==0.14.0
+RUN pip install --no-cache-dir fastapi uvicorn jinja2 python-multipart
+RUN pip install --no-cache-dir mcp
+
+RUN mkdir -p /root/.hermes && \
+    echo "GATEWAY_ALLOW_ALL_USERS=true" > /root/.hermes/.env && \
+    echo "HERMES_INSECURE=true" >> /root/.hermes/.env
+
+ENV HERMES_WEB_DIR=/usr/local/lib/python3.11/site-packages/hermes_agent/web/dist
+
+EXPOSE 8020
+
+CMD sh -c "hermes gateway run & sleep 3 && hermes dashboard --host 0.0.0.0 --port 8020 --insecure"
