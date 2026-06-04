@@ -19,6 +19,12 @@ services:
       - OPS_TELEGRAM_CHAT_ID=1245452617
     env_file:
       - .env
+    healthcheck:
+  test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8020"]
+  interval: 30s
+  timeout: 10s
+  retries: 3
+  start_period: 30s  
 
   surrealdb:
     image: surrealdb/surrealdb:v2
@@ -53,3 +59,9 @@ services:
       - ./data/open-notebook/notebook_data:/app/data
     env_file:
       - .env
+    healthcheck:
+  test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8502/notebooks"]
+  interval: 30s
+  timeout: 10s
+  retries: 3
+  start_period: 30s  
