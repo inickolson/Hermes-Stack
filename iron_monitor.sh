@@ -13,6 +13,7 @@ check_container () {
 }
 
 check_container hermes
+check_container open-notebook
 check_container surrealdb
 
 [ -f "$STATE_FILE" ] && LAST_STATE=$(cat "$STATE_FILE") || LAST_STATE="OK"
