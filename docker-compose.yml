@@ -19,12 +19,18 @@ services:
       - OPS_TELEGRAM_CHAT_ID=1245452617
     env_file:
       - .env
-    healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8020"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s  
+   healthcheck:
+     test:
+       [
+         "CMD",
+         "python3",
+         "-c",
+         "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8020')"
+       ]
+     interval: 30s
+     timeout: 10s
+     retries: 3
+     start_period: 30s  
 
   surrealdb:
     image: surrealdb/surrealdb:v2
