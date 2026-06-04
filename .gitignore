@@ -3,3 +3,4 @@ data/
 *.log
 *.tar.gz
 __pycache__/
+.monitor_state
