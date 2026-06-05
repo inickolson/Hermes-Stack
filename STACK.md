@@ -303,3 +303,52 @@ AI-assisted
 LLM-independent monitoring enabled
 Git versioned
 
+24. Backup
+text
+
+Script:
+/opt/hermes-stack/backup.sh
+
+Location:
+/opt/hermes-backups
+
+Retention:
+14 days
+
+Contents:
+docker-compose.yml
+STACK.md
+AGENTS.md
+CHEATSHEET.md
+RECOVERY.md
+.env
+data/
+25. Recovery
+text
+
+Recovery document:
+
+/opt/hermes-stack/RECOVERY.md
+
+Recovery procedure:
+
+1. Install Docker
+2. Clone Hermes-Stack
+3. Restore .env
+4. Restore latest backup
+5. docker compose up -d
+6. Verify health status
+26. Cheatsheet
+text
+
+Admin reference:
+
+/opt/hermes-stack/CHEATSHEET.md
+
+Contains:
+Docker
+GitHub
+Monitoring
+Backup
+Recovery
+Diagnostics
