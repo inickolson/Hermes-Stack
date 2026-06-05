@@ -231,6 +231,7 @@ Bash
 curl -s -o /dev/null -w "Hermes: %{http_code}\n" http://127.0.0.1:8020
 curl -s -o /dev/null -w "Notebook UI: %{http_code}\n" http://127.0.0.1:8502
 curl -s -o /dev/null -w "Notebook API: %{http_code}\n" http://127.0.0.1:5055
+
 17. Бэкапы
 Конфиги:
 
@@ -245,6 +246,7 @@ Bash
 docker compose stop open-notebook surrealdb
 tar -czf /opt/hermes-backups/data-$(date +%Y%m%d-%H%M%S).tar.gz data/open-notebook
 docker compose up -d
+
 18. Безопасность
 Не публиковать .env
 Не публиковать docker compose config
@@ -253,6 +255,7 @@ docker compose up -d
 Не менять encryption key
 Не обновлять Hermes без теста
 SurrealDB не публиковать
+
 19. Очистка
 Bash
 
@@ -264,12 +267,14 @@ docker builder prune
 text
 
 docker system prune -a --volumes
+
 20. Диагностика
 Bash
 
 free -h
 df -h /
 docker stats --no-stream
+
 21. Архитектура (v1.0)
 text
 
@@ -287,6 +292,7 @@ text
 Iron Monitor
    ↓
 Telegram
+
 22. Следующие шаги
 Auto-healing (restart container)
 Disk usage alert >90%
@@ -296,6 +302,7 @@ Cost control
 Gateway Proxy
 Cache layer
 Guard layer
+
 23. Статус системы
 Hermes Stack v1.0
 Production-ready
