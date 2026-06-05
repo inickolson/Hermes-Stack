@@ -304,7 +304,7 @@ LLM-independent monitoring enabled
 Git versioned
 
 24. Backup
-text
+
 
 Script:
 /opt/hermes-stack/backup.sh
@@ -323,8 +323,10 @@ CHEATSHEET.md
 RECOVERY.md
 .env
 data/
+
+
 25. Recovery
-text
+
 
 Recovery document:
 
@@ -338,8 +340,10 @@ Recovery procedure:
 4. Restore latest backup
 5. docker compose up -d
 6. Verify health status
+
+
 26. Cheatsheet
-text
+
 
 Admin reference:
 
