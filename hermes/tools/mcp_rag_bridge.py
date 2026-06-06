@@ -202,29 +202,41 @@ def handle(msg):
 
 def main():
     log(f"started, API={API}")
-    for line in sys.stdin:
-        line = line.strip()
-        if not line:
-            continue
+    while True:
         try:
-            msg = json.loads(line)
+            # Читаем построчно, избегая буферизации
+            line = sys.stdin.readline()
+            if not line:
+                break
+            line = line.strip()
+            if not line:
+                continue
+            
+            try:
+                msg = json.loads(line)
+            except Exception as e:
+                log(f"parse error: {e}")
+                continue
+                
+            try:
+                resp = handle(msg)
+            except Exception as e:
+                log(f"handler error: {e}")
+                resp = {
+                    "jsonrpc": "2.0",
+                    "id": msg.get("id"),
+                    "error": {"code": -32000, "message": str(e)},
+                }
+            if resp is not None:
+                send(resp)
         except Exception as e:
-            log(f"parse error: {e}")
-            continue
-        try:
-            resp = handle(msg)
-        except Exception as e:
-            log(f"handler error: {e}")
-            resp = {
-                "jsonrpc": "2.0",
-                "id": msg.get("id"),
-                "error": {"code": -32000, "message": str(e)},
-            }
-        if resp is not None:
-            send(resp)
+            log(f"loop error: {e}")
+            break
 
 
 if __name__ == "__main__":
+    # Критически важно: отключаем буферизацию вывода
+    sys.stdout.reconfigure(line_buffering=True)
     try:
         main()
     except KeyboardInterrupt:
