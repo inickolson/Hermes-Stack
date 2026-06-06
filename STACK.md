@@ -1,41 +1,31 @@
-✅ Hermes Stack — Server Map (v2.0)
-Дата актуализации: 2026‑06‑03
-Версия архитектуры: Hermes Stack v1.0 (Production-ready)
+✅ Hermes Stack — Server Map (v2.1)
+Дата актуализации: 2026‑06‑06
+Версия архитектуры: Hermes Stack v1.1
+Статус: Production‑ready
 
-1. Назначение сервера
+1️⃣ Назначение сервера
 Сервер используется как единый Docker‑стек для:
 
 Hermes Gateway + Dashboard
 Open Notebook (RAG / Knowledge Base)
 SurrealDB (DB layer)
-Multi-provider AI
-Telegram AI-бота
-LLM-independent monitoring (Iron Monitor)
-Hermes-Ops (MCP tools)
-Принципы:
-
+Multi‑provider AI
+Telegram AI‑бота
+LLM‑independent monitoring (Iron Monitor)
+Hermes‑Ops (MCP tools)
+Принципы архитектуры
 Всё через Docker Compose
-Нет systemd-сервисов
-Нет venv-сервисов
+Нет systemd‑сервисов
+Нет venv‑сервисов
 Порты не открываются наружу
-UI только через SSH LocalForward
+UI доступен только через SSH LocalForward
 Критический мониторинг не зависит от LLM
-2. Сервер
-Провайдер:
+GitHub — источник правды
+2️⃣ Сервер
+Провайдер: Aeza
+OS: Ubuntu 24.04.4 LTS
+SSH пользователь: root
 
-text
-
-Aeza
-OS:
-
-text
-
-Ubuntu 24.04.4 LTS
-SSH пользователь:
-
-text
-
-root
 Проект:
 
 text
@@ -46,21 +36,19 @@ text
 text
 
 /opt/hermes-backups
-3. Git‑репозиторий
+3️⃣ Git‑репозиторий
 Репозиторий:
 
 text
 
 https://github.com/inickolson/Hermes-Stack
-Источник правды: GitHub.
+Источник правды: GitHub
 
 Workflow:
 
+text
+
 Редактирование → GitHub →
-На сервере:
-
-Bash
-
 cd /opt/hermes-stack
 git pull
 .gitignore исключает:
@@ -71,10 +59,8 @@ text
 data/
 *.tar.gz
 *.log
-4. SSH доступ
-SSH config:
-
-sshconfig
+4️⃣ SSH доступ
+text
 
 Host aeza
     HostName 147.45.79.76
@@ -82,7 +68,7 @@ Host aeza
     LocalForward 8020 127.0.0.1:8020
     LocalForward 8502 127.0.0.1:8502
     LocalForward 5055 127.0.0.1:5055
-5. Docker стек
+5️⃣ Docker стек
 Управление:
 
 Bash
@@ -98,7 +84,7 @@ Compose файл:
 text
 
 /opt/hermes-stack/docker-compose.yml
-6. Контейнеры
+6️⃣ Контейнеры
 Service	Container	Назначение
 hermes	hermes	Gateway + Dashboard
 open-notebook	open-notebook	RAG UI + API
@@ -108,15 +94,15 @@ surrealdb	surrealdb	Database
 Bash
 
 docker compose ps
-7. Порты
+7️⃣ Порты
 Сервис	Binding
 Hermes	127.0.0.1:8020
 Notebook UI	127.0.0.1:8502
 Notebook API	127.0.0.1:5055
 SurrealDB	internal only
-Запрещено открывать 0.0.0.0 без reverse proxy.
+❗ Запрещено открывать 0.0.0.0 без reverse proxy.
 
-8. Hermes
+8️⃣ Hermes
 Версия:
 
 text
@@ -136,7 +122,7 @@ text
 
 GATEWAY_ALLOW_ALL_USERS=true
 HERMES_INSECURE=true
-9. Open Notebook
+9️⃣ Open Notebook
 Образ:
 
 text
@@ -147,12 +133,12 @@ Embeddings:
 text
 
 google | gemini-embedding-2
-RAG хранится в:
+RAG данные:
 
 text
 
-data/open-notebook/notebook_data
-10. SurrealDB
+/opt/hermes-stack/data/open-notebook/notebook_data
+🔟 SurrealDB
 Образ:
 
 text
@@ -165,25 +151,26 @@ text
 ws://surrealdb:8000/rpc
 Наружу не публикуется.
 
-11. AI Providers
+1️⃣1️⃣ AI Providers
 Роль	Провайдер	Модель
-Chat	OpenRouter	openai/gpt-oss-120b:free
+Chat	OpenRouter	openai/gpt-oss-120b:free (временно)
 Embeddings	Google	gemini-embedding-2
 Transform	OpenAI Compatible	qwen3-coder
 Tools	Google	gemini-2.0-flash
-⚠ Free модели могут давать 503.
+⚠ Free модели могут давать 503 и таймауты.
+✅ Рекомендуется убрать free LLM из primary.
 
-12. RAG
+1️⃣2️⃣ RAG
 Контрольная фраза:
 
 text
 
 фиолетовый кактус 713
-Hermes использует MCP rag.
+Hermes использует MCP rag_ask.
 
 RAG подтверждён и работает.
 
-13. Hermes as Full AI Admin Agent
+1️⃣3️⃣ Hermes as Admin Agent
 MCP ops (variant B):
 
 Tool	Функция
@@ -194,7 +181,7 @@ health_check	HTTP probe
 list_backups	ls backups
 Hermes используется для анализа, не для критических алертов.
 
-14. 🔐 Iron Monitor (LLM-independent)
+1️⃣4️⃣ 🔐 Iron Monitor (LLM‑independent)
 Дата внедрения: 2026‑06‑03
 
 Файл:
@@ -206,7 +193,7 @@ Cron:
 
 text
 
-* * * * * /opt/hermes-stack/iron_monitor.sh
+*/5 * * * * /opt/hermes-stack/iron_monitor.sh
 Принцип:
 
 Проверяет docker inspect
@@ -216,47 +203,54 @@ text
 Работает при падении hermes
 Архитектура:
 
+text
+
 Layer 1 — Iron Monitor
 Layer 2 — Hermes MCP Ops
-
-15. Telegram
+1️⃣5️⃣ Telegram
 Отдельный бот:
 Hermes Ops Monitor
 
-Используется напрямую через Telegram Bot API.
+Работает напрямую через Telegram Bot API.
 
-16. Health Check
+1️⃣6️⃣ Health Check
 Bash
 
 curl -s -o /dev/null -w "Hermes: %{http_code}\n" http://127.0.0.1:8020
 curl -s -o /dev/null -w "Notebook UI: %{http_code}\n" http://127.0.0.1:8502
 curl -s -o /dev/null -w "Notebook API: %{http_code}\n" http://127.0.0.1:5055
+1️⃣7️⃣ Бэкапы
+Script:
 
-17. Бэкапы
-Конфиги:
+text
 
-Bash
+/opt/hermes-stack/backup.sh
+Location:
 
-tar -czf /opt/hermes-backups/config-$(date +%Y%m%d-%H%M%S).tar.gz \
-docker-compose.yml .env STACK.md AGENTS.md
-Данные:
+text
 
-Bash
+/opt/hermes-backups
+Retention:
+14 days
 
-docker compose stop open-notebook surrealdb
-tar -czf /opt/hermes-backups/data-$(date +%Y%m%d-%H%M%S).tar.gz data/open-notebook
-docker compose up -d
+Содержимое:
 
-18. Безопасность
+docker-compose.yml
+STACK.md
+AGENTS.md
+CHEATSHEET.md
+RECOVERY.md
+.env
+data/
+1️⃣8️⃣ Безопасность
 Не публиковать .env
-Не публиковать docker compose config
+Не публиковать полный compose config
 Не открывать порты наружу
 Делать бэкап перед изменениями
 Не менять encryption key
 Не обновлять Hermes без теста
 SurrealDB не публиковать
-
-19. Очистка
+1️⃣9️⃣ Очистка
 Bash
 
 docker system df
@@ -267,15 +261,13 @@ docker builder prune
 text
 
 docker system prune -a --volumes
-
-20. Диагностика
+2️⃣0️⃣ Диагностика
 Bash
 
 free -h
 df -h /
 docker stats --no-stream
-
-21. Архитектура (v1.0)
+2️⃣1️⃣ Архитектура
 text
 
 Browser
@@ -285,81 +277,24 @@ Hermes Dashboard
 Open Notebook (RAG)
    ↓
 SurrealDB
+
 Monitoring:
-
-text
-
 Iron Monitor
    ↓
 Telegram
-
-22. Следующие шаги
+2️⃣2️⃣ Следующие шаги
 Auto-healing (restart container)
-Disk usage alert >90%
+Disk alert >90%
 Memory alert >90%
 Убрать free LLM из primary
 Cost control
 Gateway Proxy
 Cache layer
 Guard layer
-
-23. Статус системы
-Hermes Stack v1.0
-Production-ready
-AI-assisted
-LLM-independent monitoring enabled
+✅ 2️⃣3️⃣ Статус системы
+Hermes Stack v1.1
+Production‑ready
+AI‑assisted
+LLM‑independent monitoring enabled
 Git versioned
 
-24. Backup
-
-
-Script:
-/opt/hermes-stack/backup.sh
-
-Location:
-/opt/hermes-backups
-
-Retention:
-14 days
-
-Contents:
-docker-compose.yml
-STACK.md
-AGENTS.md
-CHEATSHEET.md
-RECOVERY.md
-.env
-data/
-
-
-25. Recovery
-
-
-Recovery document:
-
-/opt/hermes-stack/RECOVERY.md
-
-Recovery procedure:
-
-1. Install Docker
-2. Clone Hermes-Stack
-3. Restore .env
-4. Restore latest backup
-5. docker compose up -d
-6. Verify health status
-
-
-26. Cheatsheet
-
-
-Admin reference:
-
-/opt/hermes-stack/CHEATSHEET.md
-
-Contains:
-Docker
-GitHub
-Monitoring
-Backup
-Recovery
-Diagnostics
