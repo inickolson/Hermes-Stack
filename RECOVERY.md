@@ -73,9 +73,9 @@ text
 
 NAME            IMAGE                            STATUS
 hermes          hermes-stack-hermes              Up ... (healthy)
-open-notebook   lfnovo/open_notebook:v1-latest   Up ... (healthy)
+open‑notebook   lfnovo/open_notebook:v1‑latest   Up ... (healthy)
 surrealdb       surrealdb/surrealdb:v2           Up ... 
-(Примечание: статус healthy может появиться не сразу, а через 30-40 секунд после запуска).
+(Примечание: статус healthy может появиться не сразу, а через 30‑40 секунд после запуска).
 
 2. Проверьте логи на отсутствие критических ошибок:
 
@@ -89,4 +89,19 @@ Bash
 curl -I http://127.0.0.1:8020  # Hermes (ожидаем 200 или 405)
 curl -I http://127.0.0.1:8502  # Notebook (ожидаем 307)
 4. Финальный тест:
-Напишите Telegram-боту: Сделай поиск через rag_ask по фразе "фиолетовый кактус 713". Если ответ получен — система восстановлена на 100%. 🎉
+Напишите Telegram‑боту: Сделай поиск через rag_ask по фразе "фиолетовый кактус 713". Если ответ получен — система восстановлена на 100%. 🎉
+
+## max2tg – сервис мониторинга и управления
+
+max2tg – это Telegram‑бот, запущенный как Docker‑контейнер. Он периодически опрашивает Telegram API и выполняет команды, но не имеет собственного health‑check. Чтобы он не «отваливался» через 30 минут, рекомендуется:
+
+1. **Настройка автоперезапуска** – в `docker‑compose.yml` для сервиса `max2tg` уже указано `restart: unless-stopped`. Убедитесь, что в `docker‑compose.yml` также добавлен `healthcheck`:
+   ```yaml
+   healthcheck:
+     test: ["CMD", "pgrep", "python"]
+     interval: 30s
+     timeout: 5s
+     retries: 3
+   ```
+
+2

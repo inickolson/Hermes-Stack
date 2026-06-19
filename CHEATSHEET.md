@@ -10,6 +10,8 @@
 Скрипт бэкапа	/opt/hermes-stack/backup.sh
 Скрипт мониторинга	/opt/hermes-stack/iron_monitor.sh
 Папка с бэкапами	/opt/hermes-backups
+max2tg проект	/root/max2tg
+
 🐙 2. GitHub (Синхронизация)
 Все команды выполняются строго из /opt/hermes-stack.
 
@@ -20,6 +22,7 @@ git pull                    # Получить свежие обновления
 git push                    # Отправить свои правки на GitHub
 git log --oneline -10       # Посмотреть 10 последних коммитов
 git reset --hard origin/main # ❗️ ОТКАТ: сбросить всё и сделать как в GitHub
+
 🐳 3. Управление Docker
 Bash
 
@@ -36,6 +39,8 @@ docker compose logs -f             # Логи всего стека сразу
 docker logs -f hermes              # Логи только AI-ассистента
 docker logs -f open-notebook       # Логи RAG-системы
 docker logs -f surrealdb           # Логи базы данных
+docker logs -f max2tg-max2tg-1      # Логи max2tg
+
 🩺 4. Здоровье сервисов (Health Checks)
 Проверка внутреннего пульса контейнеров:
 
@@ -43,7 +48,8 @@ Bash
 
 docker inspect hermes --format '{{.State.Health.Status}}'
 docker inspect open-notebook --format '{{.State.Health.Status}}'
-Ожидаемый ответ: healthy
+docker inspect max2tg-max2tg-1 --format '{{.State.Status}}'
+Ожидаемый ответ: healthy / running
 
 Ручная проверка доступности (HTTP Probe):
 
@@ -52,6 +58,7 @@ Bash
 curl -I http://127.0.0.1:8020  # Hermes (ожидаем HTTP 200 или 405)
 curl -I http://127.0.0.1:8502  # Notebook UI (ожидаем HTTP 307)
 curl -I http://127.0.0.1:5055  # Notebook API (ожидаем HTTP 200)
+
 📈 5. Мониторинг и ресурсы сервера
 Bash
 
@@ -60,6 +67,7 @@ free -h                                 # Свободная ОЗУ и Swap (а�
 df -h /                                 # Место на диске (алерт при >90%)
 uptime                                  # Нагрузка на процессор (LA) и время работы
 docker stats --no-stream                # Нагрузка контейнеров (CPU/RAM) в данный момент
+
 💾 6. Данные, Бэкапы и Очистка
 Оценка размеров:
 
@@ -80,7 +88,7 @@ Bash
 docker system df                    # Посмотреть, сколько места занимает кэш Docker
 docker builder prune                # Безопасно очистить кэш сборки
 docker system prune -f              # Очистить остановленные контейнеры и висячие образы
-⚠️ Осторожно: Команду docker system prune -a --volumes использовать только при полном понимании последствий (удалит все неиспользуемые тома данных).
+⚠️ Осторосторожно: Команду docker system prune -a --volumes использовать только при полном понимании последствий (удалит все неиспользуемые тома данных).
 
 🤖 7. Профили моделей (Hermes Dashboard)
 Настраиваются в веб-интерфейсе: Settings > Models
@@ -89,6 +97,7 @@ Everyday: Llama 3.3 70B (Основной мозг, баланс скорост�
 Coding: Qwen 2.5 Coder (Строгое программирование)
 Deep Analysis: Gemini 2.0 Thinking / Flash (Сложные задачи и RAG)
 Fallback: Llama 3.1 8B (Cerebras / Быстрый бесплатный резерв)
+
 🔌 8. SSH ТУННЕЛИ (LocalForward)
 Подключение: ssh aeza
 Проброшенные порты на localhost (127.0.0.1):
@@ -96,16 +105,19 @@ Fallback: Llama 3.1 8B (Cerebras / Быстрый бесплатный резе�
 8020 → Hermes Dashboard
 8502 → Open Notebook UI
 5055 → Open Notebook API
+
 🚑 9. Экстренные ситуации
 Бот молчит: Проверь docker compose ps. Если статус unhealthy — делай docker compose restart.
 Ошибка YAML после Git Pull: Делай git reset --hard origin/main для отката.
 Закончилось место на диске (No space left on device): Удали старые архивы из /opt/hermes-backups и сделай docker system prune -f.
 Полный крах (восстановление из бэкапа):
+
 Bash
 
 docker compose stop
 tar -xzf /opt/hermes-backups/ИМЯ_АРХИВА.tar.gz -C /
 docker compose up -d
+
 🏗️ 10. Текущая архитектура
 text
 
@@ -119,8 +131,10 @@ SurrealDB (Port 8000, internal)
 
 Monitoring Layer:
 Iron Monitor (Cron) → Telegram Bot API
-Hermes Stack v1.1 — Стабильность. Безопасность. Автономность. 🚀🦾
 
+max2tg (Docker) → Telegram Bot API
+
+Hermes Stack v1.1 — Стабильность. Безопасность. Автономность. 🚀🦾
 
 🛠 HERMES STACK v1.1 — ADMIN CHEATSHEET
 Назначение:
@@ -155,6 +169,11 @@ text
 
 /opt/hermes-stack/.env
 (права должны быть 600)
+max2tg:
+
+text
+
+/root/max2tg
 
 Проверить текущую папку:
 
@@ -261,6 +280,11 @@ docker logs -f open-notebook
 Bash
 
 docker logs -f surrealdb
+Логи max2tg:
+
+Bash
+
+docker logs -f max2tg-max2tg-1
 Нагрузка:
 
 Bash
@@ -281,6 +305,11 @@ docker inspect hermes --format '{{.State.Health.Status}}'
 Bash
 
 docker inspect open-notebook --format '{{.State.Health.Status}}'
+Статус max2tg:
+
+Bash
+
+docker inspect max2tg-max2tg-1 --format '{{.State.Status}}'
 Полная проверка:
 
 Bash
@@ -293,6 +322,7 @@ text
 hermes          healthy
 open-notebook   healthy
 surrealdb       Up
+max2tg          running
 ━━━━━━━━━━━━━━━━━━
 
 🌐 5. Проверка сервисов (HTTP)
@@ -456,7 +486,6 @@ Bash
 
 docker system prune -a --volumes
 Использовать только при полном понимании последствий.
-
 ━━━━━━━━━━━━━━━━━━
 
 🔐 11. Важные файлы
@@ -492,6 +521,11 @@ Backup script:
 text
 
 /opt/hermes-stack/backup.sh
+max2tg compose:
+
+text
+
+/root/max2tg/docker-compose.yml
 ━━━━━━━━━━━━━━━━━━
 
 🔌 12. SSH Туннели
@@ -559,7 +593,7 @@ text
 text
 
 Browser
-   ↓ SSH Tunnel
+   ↓ SSH
 Hermes Dashboard
    ↓
 Open Notebook (RAG)
@@ -570,6 +604,12 @@ Monitoring:
 Iron Monitor
    ↓
 Telegram
+
+max2tg
+   ↓
+Telegram
+━━━━━━━━━━━━━━━━━━
+
 ✅ Текущий статус
 text
 

@@ -9,22 +9,20 @@
 Hermes Gateway + Dashboard
 Open Notebook (RAG / Knowledge Base)
 SurrealDB (DB layer)
-Multi‑provider AI
-Telegram AI‑бота
+Multi‑provider AITelegram AI‑бота
 LLM‑independent monitoring (Iron Monitor)
 Hermes‑Ops (MCP tools)
+max2tg (Telegram Bot)
 Принципы архитектуры
-Всё через Docker Compose
-Нет systemd‑сервисов
+Всё через Docker ComposeНет systemd‑сервисов
 Нет venv‑сервисов
 Порты не открываются наружу
 UI доступен только через SSH LocalForward
-Критический мониторинг не зависит от LLM
-GitHub — источник правды
+Критический мониторинг не зависит от LLMGitHub — источник правды
+
 2️⃣ Сервер
 Провайдер: Aeza
-OS: Ubuntu 24.04.4 LTS
-SSH пользователь: root
+OS: Ubuntu 24.04.4 LTSSSH пользователь: root
 
 Проект:
 
@@ -66,8 +64,7 @@ Host aeza
     HostName 147.45.79.76
     User root
     LocalForward 8020 127.0.0.1:8020
-    LocalForward 8502 127.0.0.1:8502
-    LocalForward 5055 127.0.0.1:5055
+    LocalForward 8502 127.0.0.1:8502    LocalForward 5055 127.0.0.1:5055
 5️⃣ Docker стек
 Управление:
 
@@ -84,22 +81,20 @@ Compose файл:
 text
 
 /opt/hermes-stack/docker-compose.yml
-6️⃣ Контейнеры
-Service	Container	Назначение
+6️⃣ КонтейнерыService	Container	Назначение
 hermes	hermes	Gateway + Dashboard
 open-notebook	open-notebook	RAG UI + API
 surrealdb	surrealdb	Database
+max2tg	max2tg-max2tg-1	Telegram Bot
 Проверка:
 
-Bash
-
-docker compose ps
+Bashdocker compose ps
 7️⃣ Порты
 Сервис	Binding
-Hermes	127.0.0.1:8020
-Notebook UI	127.0.0.1:8502
+Hermes	127.0.0.1:8020Notebook UI	127.0.0.1:8502
 Notebook API	127.0.0.1:5055
 SurrealDB	internal only
+max2tg	нет (только исходящие соединения)
 ❗ Запрещено открывать 0.0.0.0 без reverse proxy.
 
 8️⃣ Hermes
@@ -148,8 +143,7 @@ Endpoint:
 
 text
 
-ws://surrealdb:8000/rpc
-Наружу не публикуется.
+ws://surrealdb:8000/rpcНаружу не публикуется.
 
 1️⃣1️⃣ AI Providers
 Роль	Провайдер	Модель
@@ -207,20 +201,40 @@ text
 
 Layer 1 — Iron Monitor
 Layer 2 — Hermes MCP Ops
-1️⃣5️⃣ Telegram
+1️⃣5️⃣ max2tg
+Telegram-бот, запущенный как отдельный Docker‑контейнер.
+
+Путь:
+
+text/root/max2tg
+Compose файл:
+
+text
+
+/root/max2tg/docker-compose.yml
+Перезапуск:
+
+text
+
+docker compose restart
+Логи:
+
+text
+
+docker logs -f max2tg-max2tg-1
+1️⃣6️⃣ Telegram
 Отдельный бот:
 Hermes Ops Monitor
 
 Работает напрямую через Telegram Bot API.
 
-1️⃣6️⃣ Health Check
+1️⃣7️⃣ Health Check
 Bash
 
 curl -s -o /dev/null -w "Hermes: %{http_code}\n" http://127.0.0.1:8020
 curl -s -o /dev/null -w "Notebook UI: %{http_code}\n" http://127.0.0.1:8502
 curl -s -o /dev/null -w "Notebook API: %{http_code}\n" http://127.0.0.1:5055
-1️⃣7️⃣ Бэкапы
-Script:
+1️⃣8️⃣ БэкапыScript:
 
 text
 
@@ -237,20 +251,18 @@ Retention:
 
 docker-compose.yml
 STACK.md
-AGENTS.md
-CHEATSHEET.md
+AGENTS.mdCHEATSHEET.md
 RECOVERY.md
 .env
 data/
-1️⃣8️⃣ Безопасность
+1️⃣9️⃣ Безопасность
 Не публиковать .env
 Не публиковать полный compose config
-Не открывать порты наружу
-Делать бэкап перед изменениями
+Не открывать порты наружуДелать бэкап перед изменениями
 Не менять encryption key
 Не обновлять Hermes без теста
 SurrealDB не публиковать
-1️⃣9️⃣ Очистка
+1️⃣0️⃣ Очистка
 Bash
 
 docker system df
@@ -261,13 +273,13 @@ docker builder prune
 text
 
 docker system prune -a --volumes
-2️⃣0️⃣ Диагностика
+2️⃣1️⃣ Диагностика
 Bash
 
 free -h
 df -h /
 docker stats --no-stream
-2️⃣1️⃣ Архитектура
+2️⃣2️⃣ Архитектура
 text
 
 Browser
@@ -282,7 +294,10 @@ Monitoring:
 Iron Monitor
    ↓
 Telegram
-2️⃣2️⃣ Следующие шаги
+
+max2tg   ↓
+Telegram
+2️⃣3️⃣ Следующие шаги
 Auto-healing (restart container)
 Disk alert >90%
 Memory alert >90%
@@ -291,10 +306,9 @@ Cost control
 Gateway Proxy
 Cache layer
 Guard layer
-✅ 2️⃣3️⃣ Статус системы
-Hermes Stack v1.1
-Production‑ready
+✅ 2️⃣4️⃣ Статус системы
+Hermes Stack v1.1Production‑ready
 AI‑assisted
 LLM‑independent monitoring enabled
 Git versioned
-
+max2tg running
