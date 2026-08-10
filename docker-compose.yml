@@ -15,7 +15,7 @@ services:
       - HERMES_INSECURE=true
       - OPEN_NOTEBOOK_API=http://open-notebook:5055
       - TZ=Europe/Moscow
-      - OPS_TELEGRAM_BOT_TOKEN=8860577568:AAGBjqUbU8AkkUMTeZwLjXig1AnXBMsn-KU
+      - OPS_TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
       - OPS_TELEGRAM_CHAT_ID=1245452617
     env_file:
       - .env
