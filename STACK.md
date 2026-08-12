@@ -61,7 +61,7 @@ data/
 text
 
 Host aeza
-    HostName 147.45.79.76
+    HostName 89.22.234.108
     User root
     LocalForward 8020 127.0.0.1:8020
     LocalForward 8502 127.0.0.1:8502    LocalForward 5055 127.0.0.1:5055
@@ -312,3 +312,8 @@ AI‑assisted
 LLM‑independent monitoring enabled
 Git versioned
 max2tg running
+
+2️⃣5
+## FreeLLMAPI Integration Router
+- **Назначение:** Локальный эмулятор / провайдер API для подключения внешней среды разработки VS Code к моделям.
+- **Особенность:** Не влияет на внутреннюю работу Hermes Agent и open-notebook.ai. Используется исключительно для изоляции и маршрутизации запросов из IDE (VS Code) к внешним провайдерам, описанным в `FreeLLMAPI.md`.
