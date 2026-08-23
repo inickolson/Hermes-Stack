@@ -102,9 +102,9 @@ max2tg	нет (только исходящие соединения)
 
 text
 
-hermes-agent==0.14.0
+hermes-agent v2026.8.3 (GitHub-тарболл, см. hermes/Dockerfile)
 Причина фиксации:
-0.15.x ломала dashboard.
+Пин 0.14.0 отменён; в v20 дашборд на basic-auth (HERMES_DASHBOARD_BASIC_AUTH_*), см. .env.example
 
 Allowlist:
 
