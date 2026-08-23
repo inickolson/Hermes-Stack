@@ -1,43 +1,13 @@
+version: '3.8'
+
 services:
-
-  hermes:
-    build: ./hermes
-    container_name: hermes
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:8020:8020"
-    volumes:
-      - ./data:/root
-      - ./hermes/tools:/opt/hermes-tools:ro
-      - /opt/hermes-backups:/opt/hermes-backups:ro
-    environment:
-      - GATEWAY_ALLOW_ALL_USERS=true
-      - HERMES_INSECURE=true
-      - OPEN_NOTEBOOK_API=http://open-notebook:5055
-      - TZ=Europe/Moscow
-      - OPS_TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-      - OPS_TELEGRAM_CHAT_ID=1245452617
-    env_file:
-      - .env
-    healthcheck:
-      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8020')"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s    
-
   surrealdb:
     image: surrealdb/surrealdb:v2
     container_name: surrealdb
     restart: unless-stopped
+    ports:
+      - "8081:8000"
     command: start --log info --user root --pass root rocksdb:/mydata/mydatabase.db
-    user: root
-    expose:
-      - "8000"
-    volumes:
-      - ./data/open-notebook/surreal_data:/mydata
-    environment:
-      - SURREAL_EXPERIMENTAL_GRAPHQL=true
 
   open-notebook:
     image: lfnovo/open_notebook:v1-latest
@@ -49,10 +19,10 @@ services:
       - "127.0.0.1:8502:8502"
       - "127.0.0.1:5055:5055"
     environment:
-      - OPEN_NOTEBOOK_ENCRYPTION_KEY=${OPEN_NOTEBOOK_ENCRYPTION_KEY}
+      - OPEN_NOTEBOOK_ENCRYPTION_KEY=${OPE...KEY}
       - SURREAL_URL=ws://surrealdb:8000/rpc
       - SURREAL_USER=root
-      - SURREAL_PASSWORD=root
+      - SURREAL_PASSWORD=***
       - SURREAL_NAMESPACE=open_notebook
       - SURREAL_DATABASE=open_notebook
     volumes:
@@ -61,7 +31,32 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8502/notebooks"]
-      interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 30s  
+      start_period: 30s
+
+  hermes: # ⚠ отступ строго 2 пробела — иначе YAML dup key
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes
+    restart: unless-stopped
+    depends_on:
+      - surrealdb
+    command: gateway run
+    ports:
+      # Только loopback! Наружу порты НЕ публикуются — доступ через:
+      # ssh -L 9119:127.0.0.1:9119 -L 8642:127.0.0.1:8642 root@89.22.234.108
+      - "127.0.0.1:8642:8642"
+      - "127.0.0.1:9119:9119"
+    volumes:
+      # Bind-mount. Внутренний пользователь hermes = uid/gid 10000.
+      # После пересоздания директории обязательно:
+      # chown -R 10000:10000 /opt/hermes-stack/hermes-v20-data
+      - /opt/hermes-stack/hermes-v20-data:/opt/data
+    environment:
+      - HERMES_DASHBOARD=1
+      - HERMES_DASHBOARD_HOST=0.0.0.0
+      - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=***
+      - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=${HER...ORD}
+      - HERMES_DASHBOARD_BASIC_AUTH_SECRET=${HER...RET}
+    env_file:
+      - .env

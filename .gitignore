@@ -4,3 +4,10 @@ data/
 *.tar.gz
 __pycache__/
 .monitor_state
+hermes-v20-data/
+
+.env.*
+!.env.example
+*.bak
+*.save*
+.hermes/
