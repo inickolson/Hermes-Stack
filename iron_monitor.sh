@@ -1,7 +1,6 @@
 #!/bin/bash
 
-TOKEN="8860577568:AAGBjqUbU8AkkUMTeZwLjXig1AnXBMsn-KU"
-CHAT_ID="1245452617"
+source /opt/hermes-stack/.env.monitor
 STATE_FILE="/opt/hermes-stack/.monitor_state"
 
 FAILED=""
