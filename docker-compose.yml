@@ -3,12 +3,14 @@ version: '3.8'
 services:
   surrealdb:
     image: surrealdb/surrealdb:v2
+    user: "0:0"
     container_name: surrealdb
     restart: unless-stopped
     ports:
       - "8081:8000"
     command: start --log info --user root --pass root rocksdb:/mydata/mydatabase.db
-
+    volumes:
+      - /root/open-notebook/surreal_data:/mydata
   open-notebook:
     image: lfnovo/open_notebook:v1-latest
     container_name: open-notebook
@@ -19,10 +21,10 @@ services:
       - "127.0.0.1:8502:8502"
       - "127.0.0.1:5055:5055"
     environment:
-      - OPEN_NOTEBOOK_ENCRYPTION_KEY=${OPE...KEY}
+      - OPEN_NOTEBOOK_ENCRYPTION_KEY=${OPEN_NOTEBOOK_ENCRYPTION_KEY}
       - SURREAL_URL=ws://surrealdb:8000/rpc
       - SURREAL_USER=root
-      - SURREAL_PASSWORD=***
+      - SURREAL_PASSWORD=root
       - SURREAL_NAMESPACE=open_notebook
       - SURREAL_DATABASE=open_notebook
     volumes:
@@ -55,8 +57,8 @@ services:
     environment:
       - HERMES_DASHBOARD=1
       - HERMES_DASHBOARD_HOST=0.0.0.0
-      - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=***
-      - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=${HER...ORD}
-      - HERMES_DASHBOARD_BASIC_AUTH_SECRET=${HER...RET}
+      - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=${HERMES_DASHBOARD_BASIC_AUTH_USERNAME}
+      - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=${HERMES_DASHBOARD_BASIC_AUTH_PASSWORD}
+      - HERMES_DASHBOARD_BASIC_AUTH_SECRET=${HERMES_DASHBOARD_BASIC_AUTH_SECRET}
     env_file:
       - .env
