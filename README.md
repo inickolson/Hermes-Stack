@@ -21,3 +21,18 @@ docker compose up -d --force-recreate hermes
 
 **WARN ... variable is not set для HERMES_DASH_PASSWORD / SECRET**
 Устаревшие имена переменных из v14. Использовать `HERMES_DASHBOARD_BASIC_AUTH_PASSWORD` / `_SECRET` / `_USERNAME` — см. `.env.example`.
+
+## Manual backup to Mac
+
+Run before any server snapshot/disk work. See [`docs/backup-to-mac.md`](docs/backup-to-mac.md) for full instructions.
+
+```bash
+bash /opt/hermes-stack/scripts/backup-to-mac.sh
+```
+
+Targets:
+- `/opt/hermes-stack` → `stack/`
+- `/opt/data` → `data/`
+- `/root/open-notebook/surreal_data` → `rag/`
+
+Keeps 7 most recent copies on the Mac under `/Volumes/Home/Backups/hermes/`.

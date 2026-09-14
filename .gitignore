@@ -11,3 +11,6 @@ hermes-v20-data/
 *.bak
 *.save*
 .hermes/
+.repowise/
+.claude/
+.vscode/

@@ -1,0 +1,77 @@
+# Free-models routing table
+# Managed by daily_free_models_check cron
+# DO NOT EDIT — initial seed for 2026-08-27
+
+last_check: 2026-08-27T08:00:00Z
+next_check: 2026-08-28T06:00:00Z
+
+providers:
+  openrouter:
+    status: healthy
+    free_models:
+      - id: minimax/minimax-m3:free
+        context: 1048576
+        best_for: [long-context, reasoning, code]
+      - id: meta-llama/llama-3.3-70b-instruct:free
+        context: 131072
+        best_for: [content, code-edit, general]
+      - id: deepseek/deepseek-chat:free
+        context: 163840
+        best_for: [devops, code]
+      - id: qwen/qwen2.5-coder-32b-instruct:free
+        context: 32768
+        best_for: [devops, code-edit]
+      - id: google/gemini-2.5-flash:free
+        context: 1048576
+        best_for: [seo, content, general]
+      - id: google/gemini-2.0-flash:free
+        context: 1048576
+        best_for: [seo, content, fallback]
+  google:
+    status: healthy
+    free_models:
+      - id: gemini-2.5-flash
+        context: 1048576
+        best_for: [seo, content, assistant, vision]
+  nvidia_nim:
+    status: unknown
+    free_models: []
+  github:
+    status: unknown
+    free_models: []
+
+routing:
+  server:
+    primary: qwen/qwen2.5-coder-32b-instruct:free
+    secondary: deepseek/deepseek-chat:free
+  coder:
+    primary: meta-llama/llama-3.3-70b-instruct:free
+    secondary: qwen/qwen2.5-coder-32b-instruct:free
+  writer:
+    primary: meta-llama/llama-3.3-70b-instruct:free
+    secondary: google/gemini-2.5-flash:free
+  seo:
+    primary: google/gemini-2.5-flash
+    secondary: google/gemini-2.5-flash:free
+  orchestrator:
+    primary: google/gemini-2.5-flash
+    secondary: minimax/minimax-m3:free
+
+channels:
+  copilot-web:
+    type: manual
+    endpoint: https://m365.cloud.microsoft/chat
+    account: abanamat@mail.lapvo1.edu.vn
+    models:
+      - id: gpt-5.6-think-deeper
+        tier: flagship
+        best_for: [architecture, deep-reasoning, critical-tasks]
+      - id: gpt-5.6-quick
+        tier: flagship-fast
+        best_for: [medium-tasks, fast-reasoning]
+      - id: gpt-5.5-quick
+        tier: strong
+        best_for: [default-manual-tasks]
+    requires: human-in-the-loop
+    cost: free
+    fallback_when: "free-провалились ИЛИ сложность=high ИЛИ запрос лучшего качества"
