@@ -18,8 +18,8 @@ services:
     depends_on:
       - surrealdb
     ports:
-      - "127.0.0.1:8502:8502"
-      - "127.0.0.1:5055:5055"
+      - "0.0.0.0:8502:8502"
+      - "0.0.0.0:5055:5055"
     environment:
       - OPEN_NOTEBOOK_ENCRYPTION_KEY=${OPEN_NOTEBOOK_ENCRYPTION_KEY}
       - SURREAL_URL=ws://surrealdb:8000/rpc
