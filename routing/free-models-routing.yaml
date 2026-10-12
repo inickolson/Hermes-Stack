@@ -67,6 +67,28 @@ providers:
       - content
       - assistant
       - vision
+  tokenharbor:
+    status: healthy
+    free_models:
+    - id: claude-haiku-5.5:free
+      context: 1048576
+      best_for:
+      - vision
+      - long-context
+      - extraction
+      - analysis
+      - general
+    - id: deepseek-v4.1-flash:free
+      context: 131072
+      best_for:
+      - code
+      - automation
+      - devops
+    - id: mimo-v2.6-flash:free
+      context: 131072
+      best_for:
+      - multimodal
+      - low-cost-scaling
   nvidia_nim:
     status: unknown
     free_models: []
@@ -77,18 +99,27 @@ routing:
   server:
     primary: nvidia/nemotron-3-ultra-550b-a55b:free
     secondary: qwen/qwen-2.5-72b-instruct:free
+    tertiary: claude-haiku-5.5:free
   coder:
     primary: qwen/qwen-2.5-72b-instruct:free
     secondary: deepseek/deepseek-v3-chat:free
+    tertiary: deepseek-v4.1-flash:free
   writer:
     primary: meta-llama/llama-3.3-70b-instruct:free
     secondary: google/gemini-2.5-flash:free
+    tertiary: claude-haiku-5.5:free
   seo:
     primary: google/gemini-2.5-flash
     secondary: google/gemini-2.5-flash:free
+    tertiary: claude-haiku-5.5:free
   orchestrator:
     primary: google/gemini-2.5-flash
     secondary: nvidia/nemotron-3-ultra-550b-a55b:free
+    tertiary: claude-haiku-5.5:free
+  vision:
+    primary: nvidia/nemotron-3-nano-omni:free
+    secondary: claude-haiku-5.5:free
+    tertiary: gemini-2.5-flash
 channels:
   copilot-web:
     type: manual
