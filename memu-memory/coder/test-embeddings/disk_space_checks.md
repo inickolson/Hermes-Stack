@@ -1,0 +1,2 @@
+[65eba7][mentioned at 2026-10-12] Test Embeddings may have previously encountered disk space issues on the server excess-salmon, which perhaps explains why Test Embeddings emphasized checking storage before the Docker deployment on 2026-10-12. [65eba7]
+[bb356a][mentioned at 2026-10-12] On 2026-10-12, Test Embeddings asked the assistant how to deploy Docker on the server excess-salmon. The assistant advised using `docker compose up -d` with health checks, checking disk space with `df -h` before deployment, and backing up configuration files first. [bb356a]

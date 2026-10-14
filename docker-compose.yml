@@ -47,8 +47,8 @@ services:
     ports:
       # Только loopback! Наружу порты НЕ публикуются — доступ через:
       # ssh -L 9119:127.0.0.1:9119 -L 8642:127.0.0.1:8642 root@89.22.234.108
-      - "127.0.0.1:8642:8642"
-      - "127.0.0.1:9119:9119"
+      - "0.0.0.0:8642:8642"
+      - "0.0.0.0:9119:9119"
     volumes:
       # Bind-mount. Внутренний пользователь hermes = uid/gid 10000.
       # После пересоздания директории обязательно:
@@ -60,5 +60,6 @@ services:
       - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=${HERMES_DASHBOARD_BASIC_AUTH_USERNAME}
       - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=${HERMES_DASHBOARD_BASIC_AUTH_PASSWORD}
       - HERMES_DASHBOARD_BASIC_AUTH_SECRET=${HERMES_DASHBOARD_BASIC_AUTH_SECRET}
+      - API_SERVER_HOST=0.0.0.0
     env_file:
       - .env

@@ -1,0 +1,2 @@
+[a69479][mentioned at 2026-10-12] Hermes Unknown likely has a custom monitoring script installed under the /opt directory on a self-managed Linux server, which suggests comfort with Linux system administration. [a69479]
+[dc4a0d][mentioned at 2026-10-12] Hermes Unknown likely has technical experience with command line tools, cron jobs, automated system monitoring, and automated delivery pipelines, and likely has a technical background in software development, system administration, or machine learning. [dc4a0d]

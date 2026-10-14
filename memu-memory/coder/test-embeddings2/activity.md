@@ -1,0 +1,1 @@
+[a36ba2][mentioned at 2026-10-12] On 2026-10-12, Test Embeddings 2 asked how to deploy Docker on the excess-salmon server, and the AI assistant advised running docker compose up -d with healthchecks, checking disk space with df -h before deployment, and backing up configuration files first. Test Embeddings 2 thanked the AI assistant, confirming that the advice worked. []

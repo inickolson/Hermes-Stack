@@ -1,0 +1,2 @@
+[d47c24][mentioned at 2026-10-12] Hermes Unknown resolved a Telegram gateway conflict by keeping the Telegram connection running in the Docker container named hermes. [d47c24]
+[cfbfac][mentioned at 2026-10-12] Hermes Unknown moved the OPS_TELEGRAM_BOT_TOKEN value into the .env file of the Hermes server setup, recorded as commit 474296d. [cfbfac]

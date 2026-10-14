@@ -1,0 +1,2 @@
+[2e149d][mentioned at 2026-10-12] On 2026-10-12, Hermes Unknown ran a scheduled check of the OpenRouter free models list using the script /root/.hermes/scripts/check_free_models.py, and the script reported the list of free models as unchanged. [2e149d]
+[69edb9][mentioned at 2026-10-12] Hermes Unknown probably set up the check_free_models.py script at /root/.hermes/scripts/check_free_models.py, which checks the OpenRouter free models list, to run on a recurring schedule so that changes to the list are noticed without manual review. [69edb9]

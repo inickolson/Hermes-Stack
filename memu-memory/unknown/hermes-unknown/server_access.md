@@ -1,0 +1,2 @@
+[7a18af][mentioned at 2026-10-12] Hermes Unknown's Linux server changed its IP address to 89.22.234.108. [7a18af]
+[d13bab][mentioned at 2026-10-12] Hermes Unknown accesses the Linux server through an SSH configuration host entry named aeza, which uses LocalForward to forward port 3001. [d13bab]

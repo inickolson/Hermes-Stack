@@ -1,0 +1,2 @@
+[c217b5][mentioned at 2026-10-12] On 2026-10-12, Hermes Unknown probably performed a token and password scan on /tmp/STACK.md and /tmp/AGENTS.md because of security concerns about exposed API keys or passwords ending up in an agent-accessible knowledge base. [c217b5]
+[26c14d][mentioned at 2026-10-12] On 2026-10-12, before importing /tmp/STACK.md and /tmp/AGENTS.md into the Open Notebook 'Hermes Stack Core' collection, Hermes Unknown scanned both files for exposed tokens or passwords and waited for indexing to finish. [26c14d]

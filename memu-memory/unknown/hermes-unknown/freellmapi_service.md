@@ -1,0 +1,2 @@
+[b183cd][mentioned at 2026-10-12] Hermes Unknown confirmed that the FreeLLMAPI systemd services were running, including the API on port 3001 and the Vite development server on port 5173. [b183cd]
+[34b892][mentioned at 2026-10-12] Hermes Unknown restored the FreeLLMAPI web UI on port 3001 by building the frontend in the /opt/freellmapi/client directory. [34b892]

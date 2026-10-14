@@ -1,0 +1,2 @@
+[a9859f][mentioned at 2026-10-12] Hermes Unknown probably prefers receiving notifications only when there is new information rather than routine status updates. [a9859f]
+[56c709][mentioned at 2026-10-12] Hermes Unknown perhaps set up this cron job to watch for system or service changes on a recurring schedule. [56c709]

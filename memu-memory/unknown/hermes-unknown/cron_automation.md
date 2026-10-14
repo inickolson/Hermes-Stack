@@ -1,0 +1,2 @@
+[fd9fd9][mentioned at 2026-10-12] Hermes Unknown probably uses an AI assistant integrated into scheduled automation workflows rather than only in interactive chat. [fd9fd9]
+[7f210b][mentioned at 2026-10-12] Hermes Unknown likely has system administration skills and is comfortable configuring Linux cron jobs and bash scripts. [7f210b]

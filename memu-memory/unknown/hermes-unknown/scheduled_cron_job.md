@@ -1,0 +1,2 @@
+[490320][mentioned at 2026-10-12] On 2026-10-12, the scheduled cron run of the iron monitoring script at /opt/hermes-stack/iron_monitor.sh completed and returned a silent result because nothing new was found, so no delivery was sent to Hermes Unknown. [490320]
+[c4f1fc][mentioned at 2026-10-12] Hermes Unknown probably treats a [SILENT] response as a valid output for scheduled jobs, meaning no notification is sent when a scheduled run finds nothing new to report. [c4f1fc]

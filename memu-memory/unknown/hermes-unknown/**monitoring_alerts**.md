@@ -1,0 +1,2 @@
+[e18e9b][mentioned at 2026-10-12] Hermes Unknown probably prefers receiving notifications from the /opt/hermes-monitor/monitor.sh monitoring script only when something new or noteworthy happens, rather than routine status updates. [e18e9b]
+[72a7c1][mentioned at 2026-10-12] Hermes Unknown likely checks the output of the /opt/hermes-monitor/monitor.sh monitoring script only when an alert is delivered, trusting the automated system for routine oversight. [72a7c1]

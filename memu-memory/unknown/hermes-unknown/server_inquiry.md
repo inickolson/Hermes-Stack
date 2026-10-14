@@ -1,0 +1,4 @@
+[cc949c][mentioned at 2026-10-12] On 2026-10-12, Hermes Unknown sent the single word "сервер" to the assistant, apparently asking about the server, and no response to this message was recorded. [cc949c]
+[af8a73][mentioned at 2026-10-12] On 2026-10-12, Hermes Unknown probably wants details about the hardware, location, or hosting setup of the server that serves the assistant's openai/gpt-oss-120b model. [af8a73]
+[a13bfc][mentioned at 2026-10-12] On 2026-10-12, Hermes Unknown may be dissatisfied with the unanswered "сервер" request and could repeat or rephrase it to get a server status report. [a13bfc]
+[1e4ed5][mentioned at 2026-10-12] On 2026-10-12, Hermes Unknown perhaps runs the openai/gpt-oss-120b model on a self-hosted or private server rather than through a public commercial API. [1e4ed5]

@@ -1,0 +1,2 @@
+[c58746][mentioned at 2026-10-12] Hermes Unknown is perhaps comfortable with command-line tools and scheduled automation. [c58746]
+[2346d0][mentioned at 2026-10-12] Hermes Unknown probably runs a self-hosted Hermes agent stack on a Linux server. [2346d0]

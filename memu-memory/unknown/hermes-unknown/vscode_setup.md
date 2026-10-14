@@ -1,0 +1,2 @@
+[17b3ad][mentioned at 2026-10-12] Hermes Unknown works on a MacBook with Visual Studio Code installed in the /Applications directory. [17b3ad]
+[a6c02f][mentioned at 2026-10-12] Hermes Unknown reinstalled VSCode on a MacBook, launches it through its full binary path, and configured the Continue.dev extension to use http://localhost:3001/v1. [a6c02f]

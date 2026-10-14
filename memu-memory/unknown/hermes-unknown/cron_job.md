@@ -1,0 +1,2 @@
+[1bbde3][mentioned at 2026-10-12] Hermes Unknown may run the iron_monitor monitoring task regularly and expects it to operate without manual intervention. [1bbde3]
+[96611c][mentioned at 2026-10-12] Hermes Unknown likely has a technical background comfortable with bash scripting, cron scheduling, and server administration. [96611c]

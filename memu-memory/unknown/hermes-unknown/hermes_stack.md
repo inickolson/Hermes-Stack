@@ -1,0 +1,2 @@
+[a6ac9d][mentioned at 2026-10-12] Hermes Unknown probably maintains a self-hosted server environment organized under the /opt/hermes-stack directory. [a6ac9d]
+[683b0e][mentioned at 2026-10-12] Hermes Unknown probably uses the iron_monitor script at /opt/hermes-stack/iron_monitor.sh to track the health or status of a custom project or service within the Hermes stack. [683b0e]

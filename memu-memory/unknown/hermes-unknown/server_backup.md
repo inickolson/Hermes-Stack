@@ -1,0 +1,3 @@
+[4f5072][mentioned at 2026-10-12] Hermes Unknown discovered that server backups had been missing since June 5, 2026, and created an emergency backup of 623 MB to address the gap. [4f5072]
+[3a5197][mentioned at 2026-10-12] Hermes Unknown set up automated cron backups stored in /opt/hermes-backups, with a daily backup at 03:00 and a weekly backup on Sundays at 03:30. [3a5197]
+[a54e96][mentioned at 2026-10-12] Hermes Unknown pushed the files INTEGRATIONS.md and backup-daily.sh to the repository, recorded as commit 7fb5dd4. [a54e96]

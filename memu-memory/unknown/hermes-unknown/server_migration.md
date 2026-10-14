@@ -1,0 +1,1 @@
+[42564b][mentioned at 2026-10-12] Hermes Unknown probably recently migrated, reorganized, or cleaned up files on the Linux server, which may have removed the /opt/hermes-monitor/ directory before the monitoring failure on 2026-10-12. [42564b]

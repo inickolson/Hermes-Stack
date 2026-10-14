@@ -1,0 +1,2 @@
+[98a427][mentioned at 2026-10-12] On 2026-10-12, the scheduled monitoring cron job of Hermes Unknown attempted to execute /opt/hermes-monitor/monitor.sh but failed because the file was not found at that path. A filesystem-wide search for monitor.sh returned no results, and the directory /opt/hermes-monitor/ did not exist, so the monitoring check could not run. [98a427]
+[db35ec][mentioned at 2026-10-12] Hermes Unknown likely uses a Linux server on which scheduled cron jobs run automatically under the Hermes agent system. [db35ec]

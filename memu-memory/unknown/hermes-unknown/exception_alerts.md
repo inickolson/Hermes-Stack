@@ -1,0 +1,2 @@
+[dc4a0d][mentioned at 2026-10-12] Hermes Unknown likely prefers to minimize notification noise and wants to be alerted only about exceptions. [dc4a0d]
+[05f199][mentioned at 2026-10-12] Hermes Unknown ran the scheduled cron job that executes the iron monitoring script at /opt/hermes-stack/iron_monitor.sh on 2026-10-12, and the run returned a [SILENT] result, which likely means no new issues were found, so no detailed monitoring output is available for that run. [05f199]

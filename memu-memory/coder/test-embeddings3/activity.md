@@ -1,0 +1,1 @@
+[536084][mentioned at 2026-10-12] Test Embeddings 3 asked the assistant how to deploy Docker on the server excess-salmon, and the assistant advised using docker compose up -d with healthchecks, checking disk space with df -h before deployment, and backing up configuration files first. Test Embeddings 3 later thanked the assistant, confirming that the advice worked. []

@@ -1,0 +1,1 @@
+[6246bf][mentioned at 2026-10-12] Hermes Unknown probably uses multiple AI and service providers, including TokenRouter, OpenRouter, Telegram, and NVIDIA, within the Hermes agent setup. [6246bf]

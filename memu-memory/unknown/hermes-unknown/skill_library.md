@@ -1,0 +1,2 @@
+[928518][mentioned at 2026-10-12] Hermes Unknown probably is technically proficient and customizes the Hermes agent environment and its skill library to build personal automation. [928518]
+[6112d8][mentioned at 2026-10-12] On October 12, 2026, Hermes Unknown updated the blogwatcher skill with a "Using blogwatcher for news aggregation" section that documents the AI News Bot workflow. [6112d8]

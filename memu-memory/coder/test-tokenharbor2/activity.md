@@ -1,0 +1,1 @@
+[9b73b0][mentioned at 2026-10-12] On 2026-10-12, Test TokenHarbor 2 asked how to deploy Docker on the excess-salmon server, and the assistant advised using docker compose up -d with healthchecks, checking disk space with df -h before deployment, and backing up configuration files first. Test TokenHarbor 2 later confirmed that the advice worked. []

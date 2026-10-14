@@ -1,0 +1,4 @@
+[4e0833][mentioned at 2026-10-12] On 2026-10-12, Test Embeddings 2 asked the AI assistant how to deploy Docker on the excess-salmon server. The AI assistant advised running `docker compose up -d` with healthchecks, checking disk space with `df -h` before deployment, and backing up configuration files first. []
+[288828][mentioned at 2026-10-12] On 2026-10-12, Test Embeddings 2 thanked the AI assistant for its Docker deployment advice on the excess-salmon server, confirming that the advice worked. []
+[06f4f0][mentioned at 2026-10-12] Test Embeddings 2 may have successfully deployed Docker services on the excess-salmon server on or around 2026-10-12, so those Docker services are probably running on excess-salmon now. []
+[d957d8][mentioned at 2026-10-12] Test Embeddings 2 perhaps experienced disk space or configuration problems on servers in the past, which may explain why Test Embeddings 2 took a careful approach to preparing the Docker deployment on excess-salmon. []

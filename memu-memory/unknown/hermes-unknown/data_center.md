@@ -1,0 +1,2 @@
+[234319][mentioned at 2026-10-12] The AI News Update that Hermes Unknown received on Telegram on October 12, 2026 included energy and data center stories: data center demand drove a 66% surge in natural gas power plant costs, Meta bought 1 GW of solar, Microsoft added 475 MW of solar for its AI data centers, and data center tweaks could unlock 76 GW of new US power capacity. [234319]
+[80b4b6][mentioned at 2026-10-12] Hermes Unknown probably has a strong interest in climate, energy, and sustainability topics, especially how data centers affect power grids. [80b4b6]
